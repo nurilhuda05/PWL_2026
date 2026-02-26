@@ -8,37 +8,43 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PhotoController;
 
-Route::get('/hello', [WelcomeController::class,'hello']);
+Route::get('/hello', [WelcomeController::class, 'hello']);
 
 Route::get('/world', function () {
- return 'World';
+    return 'World';
 });
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/about', [AboutController::class,'about']);
+Route::get('/about', [AboutController::class, 'about']);
 
-Route::get('/articles/{id}', [ArticleController::class,'articles']);
+Route::get('/articles/{id}', [ArticleController::class, 'articles']);
 
 Route::get('/user/{name}', function ($name) {
- return 'Muhammad Nuril Huda '.$name;
+    return 'Muhammad Nuril Huda ' . $name;
 });
 
-Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId){
- return 'Pos ke-'.$postId." Komentar ke-: ".$commentId;
+Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
+    return 'Pos ke-' . $postId . " Komentar ke-: " . $commentId;
 });
 
 
-Route::get('/user/{name?}', function ($name='John') {
- return 'Muhammad Nuril Huda '.$name;
+Route::get('/user/{name?}', function ($name = 'John') {
+    return 'Muhammad Nuril Huda ' . $name;
 });
 
 Route::resource('photos', PhotoController::class);
 
-Route::resource('photos', PhotoController::class) -> only([
- 'index', 'show'
+Route::resource('photos', PhotoController::class)->only([
+    'index',
+    'show'
 ]);
 
 Route::resource('photos', PhotoController::class)->except([
- 'create', 'store', 'update', 'destroy'
+    'create',
+    'store',
+    'update',
+    'destroy'
 ]);
+
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
